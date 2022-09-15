@@ -118,11 +118,12 @@ def emscripten_deps(emscripten_version = "latest"):
         http_archive(
             name = "emscripten_bin_linux_arm64",
             strip_prefix = "install",
-            url = emscripten_url.format("linux", revision.hash, "_arm64", "tbz2"),
+            url = emscripten_url.format("linux", revision.hash, "-arm64", "tbz2"),
             sha256 = revision.sha_linux_arm64,
             build_file_content = BUILD_FILE_CONTENT_TEMPLATE.format(bin_extension = ""),
             type = "tar.bz2",
         )
+
     if "emscripten_bin_linux" not in excludes:
         http_archive(
             name = "emscripten_bin_linux",
@@ -168,6 +169,13 @@ def emscripten_deps(emscripten_version = "latest"):
             name = "emscripten_npm_linux",
             package_json = "@emscripten_bin_linux//:emscripten/package.json",
             package_lock_json = "@emscripten_bin_linux//:emscripten/package-lock.json",
+        )
+    
+    if "emscripten_npm_linux_arm64" not in excludes:
+        npm_install(
+            name = "emscripten_npm_linux",
+            package_json = "@emscripten_bin_linux_arm64//:emscripten/package.json",
+            package_lock_json = "@emscripten_bin_linux_arm64//:emscripten/package-lock.json",
         )
 
     if "emscripten_npm_mac" not in excludes:
