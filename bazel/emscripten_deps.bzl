@@ -115,6 +115,12 @@ def emscripten_deps(emscripten_version = "latest"):
         )
 
     if "emscripten_bin_linux_arm64" not in excludes:
+        # http_archive(
+        #     name = "nodejs_linux_amd64"
+        #     url = "https://storage.googleapis.com/webassembly/emscripten-releases-builds/deps/node-v14.18.2-linux-arm64.tar.xz"
+        #     hash256 = "0805d52af1e08c2bb48fb1c3f93c5c8acaa8d5332965c42c85ebec29dc656073"
+        #     strip_prefix = ""
+        # )
         http_archive(
             name = "emscripten_bin_linux_arm64",
             strip_prefix = "install",
