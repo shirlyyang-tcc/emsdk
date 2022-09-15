@@ -114,6 +114,15 @@ def emscripten_deps(emscripten_version = "latest"):
             node_version = "16.6.2",
         )
 
+    if "emscripten_bin_linux_arm64" not in excludes:
+        http_archive(
+            name = "emscripten_bin_linux_arm64",
+            strip_prefix = "install",
+            url = emscripten_url.format("linux", revision.hash, "_arm64", "tbz2"),
+            sha256 = revision.sha_linux_arm64,
+            build_file_content = BUILD_FILE_CONTENT_TEMPLATE.format(bin_extension = ""),
+            type = "tar.bz2",
+        )
     if "emscripten_bin_linux" not in excludes:
         http_archive(
             name = "emscripten_bin_linux",
