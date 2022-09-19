@@ -9,7 +9,7 @@ FROZEN_CACHE = True
 
 system = platform.system()
 
-print("++++platfrom.machine", platform.machine())
+# print("++++platfrom.machine", platform.machine())
 
 machine = "arm64" if (platform.machine() == "arm64" or platform.machine() == "aarch64") else "amd64"
 nodejs_binary = "bin/nodejs/node.exe" if(system =="Windows") else "bin/node"
